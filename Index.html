@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Lounge - Multi Cuisine Restaurant & Bakery</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f5f0; /* Warm cream background */
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #8b4513; /* Warm brown */
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ffa500; /* Orange accent */
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #8b4513;
+            text-align: center;
+        }
+        section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Home */
+        #home {
+            background: url('https://source.unsplash.com/featured/?restaurant,food') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        #home .container {
+            position: relative;
+            z-index: 1;
+        }
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        #home p {
+            font-size: 1.2rem;
+        }
+
+        /* About Us */
+        #about {
+            background-color: #fff;
+        }
+        #about .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        #about img {
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem;
+            border-radius: 10px;
+        }
+        #about .text {
+            flex: 1;
+            padding: 1rem;
+        }
+
+        /* Menu */
+        #menu {
+            background-color: #f9f5f0;
+        }
+        .menu-category {
+            margin-bottom: 2rem;
+        }
+        .menu-category h3 {
+            font-size: 1.8rem;
+            color: #8b4513;
+            margin-bottom: 1rem;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu-item .name {
+            font-weight: bold;
+        }
+        .menu-item .price {
+            color: #ffa500;
+        }
+
+        /* Gallery */
+        #gallery {
+            background-color: #fff;
+        }
+        .gallery-slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .gallery-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .gallery-images img {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 10px;
+            border-radius: 10px;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+
+        /* Reviews */
+        #reviews {
+            background-color: #f9f5f0;
+        }
+        .review {
+            background-color: #fff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .review .stars {
+            color: #ffa500;
+        }
+
+        /* Contact */
+        #contact {
+            background-color: #fff;
+        }
+        #contact .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #contact .info {
+            flex: 1;
+            padding: 1rem;
+        }
+        #contact .map {
+            flex: 1;
+            padding: 1rem;
+        }
+        #contact iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #8b4513;
+            color: #fff;
+            border-radius: 5px;
+            margin: 0.5rem;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #a0522d;
+        }
+        .whatsapp-btn {
+            background-color: #25d366;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
+
+        /* Floating Call Button */
+        .call-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffa500;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #8b4513;
+                padding: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            section {
+                padding: 2rem 0;
+            }
+            #home h1 {
+                font-size: 2rem;
+            }
+            #about .container {
+                flex-direction: column;
+            }
+            #contact .container {
+                flex-direction: column;
+            }
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Noor Lounge</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <h1>Welcome to Noor Lounge</h1>
+            <p>Multi Cuisine Restaurant & Bakery in Rajbagh, Srinagar, India</p>
+            <p>Experience exquisite flavors and warm hospitality.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <img src="https://source.unsplash.com/featured/?bakery,restaurant" alt="Noor Lounge Interior">
+            <div class="text">
+                <h2>About Us</h2>
+                <p>Noor Lounge is a premier multi-cuisine restaurant and bakery located in the heart of Rajbagh, Srinagar. We pride ourselves on serving authentic dishes from various cuisines, paired with freshly baked goods. Our warm ambiance and exceptional service make every visit memorable.</p>
+                <p>Established with a passion for food, we use only the finest ingredients to create culinary delights that cater to all tastes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="container">
+            <h2>Our Menu</h2>
+            <div class="menu-category">
+                <h3>Appetizers</h3>
+                <div class="menu-item">
+                    <span class="name">Chicken Tikka</span>
+                    <span class="price">₹250</span>
+                </div>
+                <div class="menu-item">
+                    <span class="name">Paneer Pakora</span>
+                    <span class="price">₹200</span>
+                </div>
+            </div>
+            <div class="menu-category">
+                <h3>Main Courses</h3>
+                <div class="menu-item">
+                    <span class="name">Butter Chicken</span>
+                    <span class="price">₹350</span>
+                </div>
+                <div class="menu-item">
+                    <span class="name">Biryani</span>
+                    <span class="price">₹300</span>
+                </div>
+            </div>
+            <div class="menu-category">
+                <h3>Bakery</h3>
+                <div class="menu-item">
+                    <span class="name">Chocolate Cake</span>
+                    <span class="price">₹150</span>
+                </div>
+                <div class="menu-item">
+                    <span class="name">Croissants</span>
+                    <span class="price">₹100</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="gallery-slider">
+                <div class="gallery-images" id="gallery-images">
+                    <img src="https://source.unsplash.com/featured/?food,chicken" alt="Dish 1">
+                    <img src="https://source.unsplash.com/featured/?bakery,cake" alt="Dish 2">
+                    <img src="https://source.unsplash.com/featured/?restaurant,interior" alt="Interior 1">
+                    <img src="https://source.unsplash.com/featured/?food,pasta" alt="Dish 3">
+                </div>
+                <button class="slider-btn prev" id="prev">&lt;</button>
+                <button class="slider-btn next" id="next">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="container">
+            <h2>Customer Reviews</h2>
+            <div class="review">
+                <p class="stars">★★★★★</p>
+                <p>"Amazing food and service! The bakery items are to die for."</p>
+                <p>- Aisha Khan</p>
+            </div>
+            <div class="review">
+                <p class="stars">★★★★☆</p>
+                <p>"Great ambiance and delicious multi-cuisine options."</p>
+                <p>- Rahul Sharma</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="info">
+                <h2>Contact Us</h2>
+                <p><strong>Address:</strong> Rajbagh, Srinagar, India</p>
+                <p><strong>Phone:</strong> +91 12345 67890</p>
+                <p><strong>Email:</strong> info@noorlounge.com</p>
+                <a href="tel:+911234567890" class="btn">Call Now</a>
+                <a href="https://wa.me/911234567890?text=Hi%20Noor%20Lounge,%20I%20would%20like%20to%20make%20a%20reservation." class="btn whatsapp-btn">Reserve via WhatsApp</a>
+            </div>
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.765!2d74.811!3d34.083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18b0b0b0b0b0b%3A0x0!2zMzTCsDA0JzU4LjgiTiA3NMKwNDgnMzkuNiJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <button class="call-btn" onclick="window.location.href='tel:+911234567890'">📞</button>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Gallery slider
+        const galleryImages = document.getElementById('gallery-images');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        let currentIndex = 0;
+        const totalImages = galleryImages.children.length;
+
+        function updateSlider() {
+            const offset = -currentIndex * 420; // Approximate image width + margin
+            galleryImages.style.transform = `translateX(${offset}px)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+            updateSlider();
+        });
+    </script>
+</body>
+</html>
